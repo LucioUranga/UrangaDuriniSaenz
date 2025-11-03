@@ -13,6 +13,17 @@ export class Login extends Component {
       error: ''
     };
   }
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log("Usuario logueado:", user.email);
+        this.props.navigation.navigate('HomeMenu');
+      } else {
+        console.log("No hay usuario logueado");
+      }
+    });
+  }
+
 
   onSubmit(email, pass) {
     if (!email.includes('@')) {
