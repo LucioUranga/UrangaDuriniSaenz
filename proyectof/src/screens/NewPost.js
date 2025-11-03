@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
 import { db, auth } from '../firebase/config';
 
-export default class NewPost extends Component {
+
+export class NewPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +15,7 @@ export default class NewPost extends Component {
 
 
   handlePost() {
-    const { description } = this.state;
+    const description = this.state;
     const user = auth.currentUser;
 
     if (!user) {
@@ -25,14 +26,14 @@ export default class NewPost extends Component {
 
     db.collection('posts')
       .add({
-        owner: user.email,
+        owner: auth.currentUser.email,
         description: description,
         createdAt: Date.now(),
       })
       .then(() => {
         this.setState({
           description: '',
-          success: '¡Posteo publicado!',
+          success: 'Posteo publicado',
           error: ''
         });
       })
@@ -44,26 +45,25 @@ export default class NewPost extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Crear nuevo post</Text>
+      <View>
+        <Text>Crear nuevo post</Text>
 
         <TextInput
-          style={styles.textArea}
           placeholder="Escribe aquí tu post..."
           onChangeText={(text) => this.setState({ description: text })}
           value={this.state.description}
         />
 
-        <Pressable style={styles.button} onPress={() => this.handlePost()}>
-          <Text style={styles.buttonText}>Publicar post</Text>
+        <Pressable onPress={() => this.handlePost()}>
+          <Text>Publicar post</Text>
         </Pressable>
 
-        {this.state.error ? <Text style={styles.error}>{this.state.error}</Text> : null}
-        {this.state.success ? <Text style={styles.success}>{this.state.success}</Text> : null}
+        {/* {this.state.error ? <Text style={styles.error}>{this.state.error}</Text> : null}
+        {this.state.success ? <Text style={styles.success}>{this.state.success}</Text> : null} */}
       </View>
     );
   }
 }
 
-export default NewPost;
+export default NewPost
 
