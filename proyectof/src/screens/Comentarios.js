@@ -10,7 +10,15 @@ export class Comentarios extends Component {
       comentarios: []
     };
   }
-
+componentDidMount() {
+    
+    db.collection('posts')
+      .doc(this.props.route.params.postId)
+      .onSnapshot((doc) => {
+        const data = doc.data();
+        this.setState({ comentarios: data.comments || [] });
+      });
+  }
 
   render() {
     return (
@@ -34,5 +42,5 @@ export class Comentarios extends Component {
   }
 }
 
-export default Comentrios
+export default Comentarios
 
