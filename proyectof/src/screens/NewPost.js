@@ -9,13 +9,15 @@ export class NewPost extends Component {
     this.state = {
       description: '',
       error: '',
-      success: ''
+      success: '',
+      likes: [],
+      comentarios: []
     };
   }
 
 
   handlePost() {
-    const description = this.state;
+    const description = this.state.description;
     const user = auth.currentUser;
 
     if (!user) {
