@@ -31,6 +31,7 @@ export class NewPost extends Component {
         owner: auth.currentUser.email,
         description: description,
         createdAt: Date.now(),
+        likes: []
       })
       .then(() => {
         this.setState({
@@ -44,7 +45,24 @@ export class NewPost extends Component {
         this.setState({ error: 'Error al publicar el post' });
       });
   }
+contadorLike(){
+const userEmail = auth.currentUser.email;
 
+    if (currentLikes.includes(userEmail)) {
+      db.collection('posts')
+        .doc(postId)
+        .update({
+          likes: firebase.firestore.FieldValue.arrayRemove(userEmail)
+        });
+    } else {
+      db.collection('posts')
+        .doc(postId)
+        .update({
+          likes: firebase.firestore.FieldValue.arrayUnion(userEmail)
+        });
+    }
+
+}
   render() {
     return (
       <View>
@@ -59,9 +77,6 @@ export class NewPost extends Component {
         <Pressable onPress={() => this.handlePost()}>
           <Text>Publicar post</Text>
         </Pressable>
-
-        {/* {this.state.error ? <Text style={styles.error}>{this.state.error}</Text> : null}
-        {this.state.success ? <Text style={styles.success}>{this.state.success}</Text> : null} */}
       </View>
     );
   }

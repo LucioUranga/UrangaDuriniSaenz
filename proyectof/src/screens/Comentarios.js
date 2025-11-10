@@ -23,7 +23,7 @@ componentDidMount() {
   render() {
     return (
       <View>
-        <Text>Crear nuevo post</Text>
+        <Text>Crear nuevo comentario</Text>
 
         <TextInput
           placeholder="Escribe aquí tu comentario..."
@@ -35,8 +35,7 @@ componentDidMount() {
           <Text>Publicar comentario</Text>
         </Pressable>
 
-        {/* {this.state.error ? <Text style={styles.error}>{this.state.error}</Text> : null}
-        {this.state.success ? <Text style={styles.success}>{this.state.success}</Text> : null} */}
+
       </View>
     );
   }
