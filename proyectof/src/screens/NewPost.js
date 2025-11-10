@@ -44,24 +44,7 @@ export class NewPost extends Component {
         this.setState({ error: 'Error al publicar el post' });
       });
   }
-contadorLike(){
-const userEmail = auth.currentUser.email;
-
-    if (currentLikes.includes(userEmail)) {
-      db.collection('posts')
-        .doc(postId)
-        .update({
-          likes: firebase.firestore.FieldValue.arrayRemove(userEmail)
-        });
-    } else {
-      db.collection('posts')
-        .doc(postId)
-        .update({
-          likes: firebase.firestore.FieldValue.arrayUnion(userEmail)
-        });
-    }
-
-}
+  
   render() {
     return (
       <View>
@@ -72,7 +55,7 @@ const userEmail = auth.currentUser.email;
           onChangeText={(text) => this.setState({ description: text })}
           value={this.state.description}
         />
-
+       
         <Pressable onPress={() => this.handlePost()}>
           <Text>Publicar post</Text>
         </Pressable>

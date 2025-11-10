@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native';
 import { db, auth } from '../firebase/config';
+import firebase from 'firebase/app';
+
 
 
 
@@ -23,6 +25,25 @@ export class Home extends Component {
       });
   }
 
+  contadorLike(postId, currentLikes) {
+    const userEmail = auth.currentUser.email;
+
+    if (currentLikes.includes(userEmail)) {
+      db.collection('posts')
+        .doc(postId)
+        .update({
+          likes: firebase.firestore.FieldValue.arrayRemove(userEmail)
+        });
+    } else {
+      db.collection('posts')
+        .doc(postId)
+        .update({
+          likes: firebase.firestore.FieldValue.arrayUnion(userEmail)
+        });
+    }
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -35,7 +56,10 @@ export class Home extends Component {
             <View style={styles.card}>
               <Text style={styles.owner}>{item.owner}</Text>
               <Text style={styles.desc}>{item.description}</Text>
-
+              <Pressable onPress={() => this.contadorLike(item.id, item.likes)}>
+                <Text>Like</Text>
+              </Pressable>
+              <Text>{item.likes.length} Me gusta</Text>
               <Pressable
                 onPress={() =>
                   this.props.navigation.navigate('Comentarios', { postId: item.id })
