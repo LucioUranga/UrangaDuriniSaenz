@@ -17,7 +17,6 @@ export class NewPost extends Component {
 
 
   handlePost() {
-    const description = this.state.description;
     const user = auth.currentUser;
 
     if (!user) {
@@ -29,7 +28,7 @@ export class NewPost extends Component {
     db.collection('posts')
       .add({
         owner: auth.currentUser.email,
-        description: description,
+        description: this.state.description,
         createdAt: Date.now(),
         likes: []
       })

@@ -18,7 +18,8 @@ export class Home extends Component {
       .onSnapshot((docs) => {
         let posts = [];
         docs.forEach((doc) => posts.push({ id: doc.id, ...doc.data() }));
-        this.setState({ posts });
+        this.setState({ posts }, () => console.log(this.state.posts)
+        );
       });
   }
 
