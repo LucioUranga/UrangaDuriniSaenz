@@ -17,7 +17,7 @@ export class Comentarios extends Component {
     db.collection('posts')
       .doc(this.state.postId)
       .onSnapshot((doc) => {
-        this.setState({ comentarios: doc.data().comentarios || [] });
+        this.setState({ comentarios: doc.data().comentarios});
       });
   }
 
