@@ -100,69 +100,92 @@ export class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 10 },
-  title: { fontSize: 20, fontWeight: 'bold', marginBottom: 10 },
-  card: { backgroundColor: '#eee', padding: 10, marginBottom: 10, borderRadius: 10 },
-  owner: { fontWeight: 'bold' },
-  desc: { marginVertical: 5 },
-  comment: { color: '#0077b6', fontWeight: 'bold', marginTop: 5 },
-  
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#a8c0ff', // color base celeste/lavanda
   },
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 25,
+    color: '#1d3557',
   },
   infoContainer: {
     marginBottom: 30,
     backgroundColor: '#fff',
     padding: 15,
-    borderRadius: 8,
+    borderRadius: 10,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
   },
   label: {
     fontWeight: 'bold',
     fontSize: 16,
+    color: '#333',
     marginTop: 10,
   },
   info: {
     fontSize: 16,
+    color: '#555',
   },
   subtitle: {
     fontSize: 20,
     fontWeight: '600',
-    marginBottom: 10,
+    marginBottom: 15,
+    color: '#1d3557',
   },
-  postCard: {
-    backgroundColor: '#e9ecef',
-    padding: 10,
-    marginVertical: 6,
-    borderRadius: 6,
+  card: {
+    backgroundColor: '#f1f5ff',
+    padding: 15,
+    marginVertical: 8,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#cddafd',
   },
-  postText: {
+  owner: {
+    fontWeight: 'bold',
+    color: '#003566',
+  },
+  desc: {
+    marginVertical: 5,
     fontSize: 15,
+    color: '#212529',
+  },
+  likeButton: {
+    color: '#e63946',
+    fontWeight: '600',
+    marginTop: 8,
+  },
+  likeCount: {
+    fontSize: 14,
+    color: '#495057',
+  },
+  comment: {
+    color: '#0077b6',
+    fontWeight: 'bold',
+    marginTop: 5,
   },
   emptyText: {
     fontStyle: 'italic',
-    color: '#888',
+    color: '#6c757d',
+    textAlign: 'center',
+    marginTop: 20,
   },
   logoutBtn: {
-    backgroundColor: '#dc3545',
-    padding: 10,
-    borderRadius: 6,
-    marginTop: 30,
+    backgroundColor: '#e63946',
+    padding: 12,
+    borderRadius: 10,
+    marginTop: 25,
   },
   logoutText: {
     color: '#fff',
     textAlign: 'center',
     fontWeight: 'bold',
+    fontSize: 16,
   },
 });
 

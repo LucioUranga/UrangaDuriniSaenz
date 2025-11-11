@@ -8,8 +8,6 @@ export class NewPost extends Component {
     super(props);
     this.state = {
       description: '',
-      error: '',
-      success: '',
       likes: [],
       comentarios: []
     };
@@ -34,9 +32,7 @@ export class NewPost extends Component {
       })
       .then(() => {
         this.setState({
-          description: '',
-          success: 'Posteo publicado',
-          error: ''
+          description: ''
         });
       })
       .catch((error) => {
@@ -44,25 +40,67 @@ export class NewPost extends Component {
         this.setState({ error: 'Error al publicar el post' });
       });
   }
-  
+
   render() {
     return (
-      <View>
-        <Text>Crear nuevo post</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Crear nuevo post</Text>
 
         <TextInput
+          style={styles.input}
           placeholder="Escribe aquí tu post..."
           onChangeText={(text) => this.setState({ description: text })}
           value={this.state.description}
         />
-       
-        <Pressable onPress={() => this.handlePost()}>
-          <Text>Publicar post</Text>
+
+        <Pressable style={styles.button} onPress={() => this.handlePost()}>
+          <Text style={styles.buttonText}>Publicar post</Text>
         </Pressable>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#a1c4fd',
+    backgroundGradient: 'linear-gradient(180deg, #a1c4fd 0%, #c2e9fb 100%)',
+    padding: 20,
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginVertical: 20,
+    color: '#212529',
+  },
+  input: {
+    width: '100%',
+    backgroundColor: '#fff',
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 16,
+    marginBottom: 15,
+  },
+  button: {
+    backgroundColor: '#007bff',
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+    alignItems: 'center',
+    width: '100%',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  }
+});
+
 
 export default NewPost
 
